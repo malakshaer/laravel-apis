@@ -21,14 +21,14 @@ class SortAPI extends Controller
             }
             else if(ctype_lower($str[$i]))
             {
-                $lowerCase = $lowerCase.$str;
+                $lowerCase = $lowerCase.$str[$i];
             }
             else
             {
-                $nb = $nb.$str;
+                $nb = $nb.$str[$i];
             }
         }
-        
+
         $arrLower = sortArray($lowerCase);
         $arrUpper = sortArray($upperCase);
         $arrNumber = sortArray($nb);
