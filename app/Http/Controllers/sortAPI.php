@@ -35,13 +35,13 @@ class SortAPI extends Controller
 
         $array = array();
 
-        for ($i = 0; $i < count($lowerCase); $i++)
+        for ($i = 0; $i < count($arrLower); $i++)
         { 
-            $array[$lowerCase[$i]] = ord($arrLower[$i]);
+            $array[$arrLower[$i]] = ord($arrLower[$i]);
         }
-        for ($m=0; $m < count($upperCase); $m++)
+        for ($m=0; $m < count($arrUpper); $m++)
         { 
-            $array[$upperCase[$m]] = ord($arrUpper[$m]);
+            $array[$arrUpper[$m]] = ord($arrUpper[$m]);
         }
         asort($array);
 
