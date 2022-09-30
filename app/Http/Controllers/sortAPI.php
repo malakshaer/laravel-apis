@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class SortAPI extends Controller
 {
 
-    public function getSortedString($str)
+    public function getSortedString($str = "E1agr5Hh")
     {
         $lowerCase = "";
         $upperCase = "";
@@ -37,11 +37,11 @@ class SortAPI extends Controller
 
         for ($i = 0; $i < count($lowerCase); $i++)
         { 
-            $array[$lowerCase[$i]] = ord($lowerCaseA[$i]);
+            $array[$lowerCase[$i]] = ord($arrLower[$i]);
         }
         for ($m=0; $m < count($upperCase); $m++)
         { 
-            $array[$upperCase[$m]] = ord($upperCase[$m]);
+            $array[$upperCase[$m]] = ord($arrUpper[$m]);
         }
         asort($array);
 
@@ -49,7 +49,7 @@ class SortAPI extends Controller
             $res = $res.$index;
         }
 
-        $res = $res.implode($nb);
+        $res = $res.implode($arrNumber);
         
         return response()->json([
             $res
