@@ -7,29 +7,58 @@ use Illuminate\Http\Request;
 class SortAPI extends Controller
 {
 
-    public function getSortedString($str = "eA2a1E"){
+    public function getSortedString($str)
+    {
+        $lowerCase = "";
+        $upperCase = "";
+        $nb = "";
+        $res = "";
+
+        for($i=0;$i < strlen($str);$i++){
+            if(ctype_upper($str[$i]))
+            {
+                $upperCase = $upperCase.$str[$i];
+            }
+            else if(ctype_lower($str[$i]))
+            {
+                $lowerCase = $lowerCase.$str;
+            }
+            else
+            {
+                $nb = $nb.$str;
+            }
+        }
         
-        $outputChar = preg_replace('/[^a-z]/', '', $str);
-        $arr1 = str_split($outputChar);
-        print_r($arr1);
-        $res1 = sort($arr1);
+        $arrLower = sortArray($lowerCase);
+        $arrUpper = sortArray($upperCase);
+        $arrNumber = sortArray($nb);
+
+        $array = array();
+
+        for ($i = 0; $i < count($lowerCase); $i++)
+        { 
+            $array[$lowerCase[$i]] = ord($lowerCaseA[$i]);
+        }
+        for ($m=0; $m < count($upperCase); $m++)
+        { 
+            $array[$upperCase[$m]] = ord($upperCase[$m]);
+        }
+        asort($array);
+
+        foreach ($array as $index => $value) {
+            $res = $res.$index;
+        }
+
+        $res = $res.implode($nb);
         
-
-        $outputChar = preg_replace('/[^A-Z]/', '', $str);
-        $arr2 = str_split($outputChar);
-        print_r($arr2);
-        $res2 = sort($arr2);
-
-
-        $outputNumber = preg_replace('/[^0-9]/', '', $str);
-        $arr3 = str_split($outputNumber);
-        print_r($arr3);
-        $res3 = sort($arr3);
-        
-
         return response()->json([
-            $res = $res1.$res2.$res3
+            $res
         ]);
 
+    }
+    function sortArray($str) {
+        $array = str_split($str);
+        sort($array);
+        return $array;
     }
 }

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class PlaceValue extends Controller
 {
-    function getPlaceValue($n = "1230"){
+    function getPlaceValue($n){
+
         $u = $n%10;
         $t = ($n/10)%10;
         $h = ($n/100)%10;
