@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PlaceValue;
+use App\Http\Controllers\MathExpression;
+use App\Http\Controllers\ToBinary;
+use App\Http\Controllers\SortAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +20,16 @@ use App\Http\Controllers\PlaceValue;
 */
 Route::get("/getPlaceValue", [PlaceValue::class, 'getPlaceValue']);
 
+Route::group(['prefix' => "math"], function(){
+    Route::get("/getExpression", [MathExpression::class, 'getExpression']);
+
+});
+Route::get("/toBinary", [ToBinary::class, 'toBinary']);
+
+Route::get("/getSortedString", [SortAPI::class, 'getSortedString']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-// Route::get("/upload", [FileController::class, 'upload']);
+
